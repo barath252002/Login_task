@@ -14,9 +14,9 @@ if(empty($username) || empty($email) || empty($password)) {
 }
 
 
-$password_hashed = password_hash($password, PASSWORD_DEFAULT); //for security
+$password_hashed = password_hash($password, PASSWORD_DEFAULT); 
 
-// Connect to the database
+
 $servername = "localhost";
 $user = "root";
 $password = "Mysql@252002";
@@ -24,12 +24,12 @@ $dbname = "users";
 
 $conn = mysqli_connect($servername, $user, $password, $dbname);
 
-// Check the database connection
+
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-// Prepare the SQL query
+
 $stmt = $conn->prepare("INSERT INTO user (uname, email, password) VALUES (?, ?, ?)");
 $stmt->bind_param("sss", $username, $email, $password_hashed);
 
@@ -42,7 +42,7 @@ else{
     
 }
 
-// Close the database connection
+
 $stmt->close();
 $conn->close();
 
